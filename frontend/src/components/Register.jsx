@@ -65,6 +65,7 @@ const Register = () => {
             <div className={styles.left}>
               <label htmlFor='nombre'>Nombre: </label>
               <input 
+                value={nombre}
                 onChange={(e) => HandleChange(e)}
                 type="text" 
                 id="nombre"
@@ -90,6 +91,7 @@ const Register = () => {
             <div className={styles.left}>
               <label htmlFor='correo'>Correo: </label>
               <input 
+                value={correo}
                 onChange={(e) => HandleChange(e)}
                 type="email" 
                 id="correo"
@@ -114,6 +116,7 @@ const Register = () => {
             <div className={styles.left}>
               <label htmlFor='contrasenia'>Contraseña: </label>
               <input 
+              value={contrasenia}
                 onChange={(e) => HandleChange(e)}
                 type="password" 
                 id="contrasenia"

@@ -1,7 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./database/db");
-const controllers = require('./controllers/index')
+const controllers = require('./controllers/index');
+
+/* invocamos a la verificación del token y la ponemos en ela url de usuario */
+const verifyToken = require("./middlewares/verifyToken");
 
 
 const app = express();
@@ -9,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get('/usuario/:userId', controllers.getUserById)
+app.get('/usuario', verifyToken ,controllers.getUserById)
 app.post('/registro', controllers.registro)
 app.post('/login', controllers.login)
 
