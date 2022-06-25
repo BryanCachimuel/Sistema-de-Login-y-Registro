@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import styles from './styles.module.scss';
 
@@ -10,13 +10,21 @@ const Welcome = () => {
 
   const navegar = useNavigate();
 
-  const { id } = useParams();
+  // obtenemos el token desde el localstorage
+  const token = localStorage.getItem('tokenusuario')
 
+  // se examina que si el token exista se pueda logear el usuario
   useEffect(() => {
-    axios.get(`http://localhost:3005/usuario/${id}`)
-    .then(({data}) => setName(data.nombre))
-    .catch((error) => console.error(error))
-  },[id])
+    if(token){
+      axios.get('http://localhost:3005/usuario', {
+        headers : {
+          tokenusuario: token, 
+        },
+      })
+      .then(({data}) => setName(data.nombre))
+      .catch((error) => console.error(error))
+    }
+  },[token])
 
   return (
     <div className={styles.welcome}>

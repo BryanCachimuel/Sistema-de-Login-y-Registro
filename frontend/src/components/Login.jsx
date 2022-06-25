@@ -20,6 +20,9 @@ const Login = () => {
     setInputs({...inputs, [e.target.name]: e.target.value});
   };
 
+  /*
+    agregar validación del token en la parte de abajo del setMensaje
+  */
   const SubmitForm = async (e) => {
     e.preventDefault();
     if(correo !== "" && contrasenia !== "") {
@@ -34,7 +37,8 @@ const Login = () => {
         setInputs({correo:"",contrasenia:""});
         setTimeout(() => {
           setMensaje("");
-          navigate(`/bienvenido/${data?.usuario.id}`)
+          localStorage.setItem('tokenusuario', data?.Usuario.token)
+          navigate('/bienvenido')
           setLoading(false)
         },2500);
       })
