@@ -6,7 +6,6 @@ const controllers = require('./controllers/index');
 /* invocamos a la verificación del token y la ponemos en ela url de usuario */
 const verifyToken = require("./middlewares/verifyToken");
 
-
 const app = express();
 
 app.use(cors());
